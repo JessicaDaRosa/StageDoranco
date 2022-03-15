@@ -8,17 +8,17 @@ import com.vastra.stage.DAO.AdherentService;
 import com.vastra.stage.Modele.Adherent;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  *
  * @author jessi
  */
-public class AdherentDashboard extends HttpServlet {
+public class createAdherentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,14 +31,38 @@ public class AdherentDashboard extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AdherentService db = new AdherentService();
-        List<Adherent> listAdh = db.findAll(); 
-        request.setAttribute("listAdherents", listAdh);
-        for(Adherent a : listAdh){
-            System.out.println(a.getId());
-        }
-        RequestDispatcher req = request.getRequestDispatcher("adherentsDashboard.jsp");
-        req.forward(request, response);
+      Adherent adh = new Adherent();
+      adh.setCode(request.getParameter("code"));
+      String codeClient = request.getParameter("CodeClientCER");
+      if(codeClient != null){
+          adh.setCodeClient(Integer.parseInt(codeClient));
+      }
+      adh.setTitre(request.getParameter("titre"));
+      adh.setNom(request.getParameter("nom"));
+      adh.setPrenom(request.getParameter("prenom"));
+      adh.setAdresse1(request.getParameter("adresse1"));
+      adh.setAdresse2(request.getParameter("adresse2"));
+      String codePostal = request.getParameter("CodePostal");
+      if(codeClient != null){
+          adh.setCodeClient(Integer.parseInt(codePostal));
+      }
+      adh.setCommune(request.getParameter("commune"));
+      adh.setPortable(request.getParameter("portable"));
+      adh.setFixe(request.getParameter("fixe"));
+      adh.setMail(request.getParameter("mail"));
+      adh.setNomEntreprise(request.getParameter("entreprise"));
+      
+      AdherentService bd = new AdherentService();
+      boolean res = bd.create(adh);
+      if(res){
+          String message = "L'adherent code: " + adh.getCode() + " a ete ajoutée.";
+          request.setAttribute("message", message);
+      }
+      
+      RequestDispatcher req = request.getRequestDispatcher("createAdherent.jsp");
+      req.forward(request, response);
+      
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

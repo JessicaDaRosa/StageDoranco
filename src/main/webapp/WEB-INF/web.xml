@@ -20,6 +20,22 @@
         <servlet-name>AdherentDashboard</servlet-name>
         <servlet-class>com.vastra.stage.Servlet.AdherentDashboard</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AjouterAdherentServlet</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.createAdherentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditerAdherentServlet</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.EditerAdherentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAdherentServlet</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.DeleteAdherentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EngagementDashboardServlet</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.EngagementDashboardServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MaterielDashboarsServlet</servlet-name>
         <url-pattern>/Materiel</url-pattern>
@@ -39,6 +55,22 @@
     <servlet-mapping>
         <servlet-name>AdherentDashboard</servlet-name>
         <url-pattern>/Adherents</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjouterAdherentServlet</servlet-name>
+        <url-pattern>/Ajouter-Adherent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditerAdherentServlet</servlet-name>
+        <url-pattern>/Editer-Adherent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAdherentServlet</servlet-name>
+        <url-pattern>/Delete-Adherent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EngagementDashboardServlet</servlet-name>
+        <url-pattern>/Engagements</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -122,7 +122,7 @@ public class EngagementService implements IDao<Engagement> {
     
     @Override
     public List<Engagement> findAll() {
-        String sql = "SELECT * FROM `engagements` ";
+        String sql = "SELECT `id`, `Code_matériel`, `Code_adhérent`, `pf`, `volume`, `Description` FROM `engagements` e, `matériel` m WHERE e.Code_matériel = m.Code;";
         ArrayList<Engagement> eng_list = new ArrayList<>();
 
         try {
@@ -135,6 +135,7 @@ public class EngagementService implements IDao<Engagement> {
                 eng.setCodeAdherent(res.getString("Code_adhérent"));
                 eng.setPf(res.getInt("PF"));
                 eng.setVolume(res.getString("volume"));
+                eng.setDescriptionMateriel(res.getString("Description"));
                 eng_list.add(eng);
             }
         } catch (SQLException ex) {

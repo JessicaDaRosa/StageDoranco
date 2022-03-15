@@ -63,12 +63,9 @@ public class AdherentService implements IDao<Adherent> {
     @Override
     public boolean delete(Adherent adh) {
         try {
-            String sql = "DELETE FROM `adhérents` WHERE Code = ? AND Nom = ? "
-                    + "AND  Prénom = ?";
+            String sql = "DELETE FROM `adhérents` WHERE id = ? ";
             PreparedStatement stmt = db.getConnexion().prepareStatement(sql);
-            stmt.setString(1, adh.getCode());
-            stmt.setString(2, adh.getNom());
-            stmt.setString(3, adh.getPrenom());
+            stmt.setInt(1, adh.getId());
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {

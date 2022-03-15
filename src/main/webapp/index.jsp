@@ -72,7 +72,7 @@
             <div class="flex column ">
                 <a href="${pageContext.request.contextPath}/Materiel">Matériel</a>
                 <a href="${pageContext.request.contextPath}/Adherents">Adhérents</a>
-                <a>Engagements</a>
+                <a href="${pageContext.request.contextPath}/Engagements">Engagements</a>
                 <a>Activité par Matériel par Adhérent</a>
             </div>
         </div>

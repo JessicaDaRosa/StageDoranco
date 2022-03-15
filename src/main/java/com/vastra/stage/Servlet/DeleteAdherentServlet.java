@@ -8,17 +8,17 @@ import com.vastra.stage.DAO.AdherentService;
 import com.vastra.stage.Modele.Adherent;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  *
  * @author jessi
  */
-public class AdherentDashboard extends HttpServlet {
+public class DeleteAdherentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,14 +31,18 @@ public class AdherentDashboard extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AdherentService db = new AdherentService();
-        List<Adherent> listAdh = db.findAll(); 
-        request.setAttribute("listAdherents", listAdh);
-        for(Adherent a : listAdh){
-            System.out.println(a.getId());
+        AdherentService bd = new AdherentService();
+        Adherent adh = bd.findById(Integer.parseInt(request.getParameter("id")));
+        boolean res = bd.delete(adh);
+        if(res){
+            String message = "Le client "
+                    + adh.getNom() + " Code: " + adh.getCode() +" a éte eliminée.";
+            request.setAttribute("message", message);
         }
-        RequestDispatcher req = request.getRequestDispatcher("adherentsDashboard.jsp");
-        req.forward(request, response);
+        List<Adherent> list = bd.findAll();
+        request.setAttribute("listAdherents", list);
+       RequestDispatcher req = request.getRequestDispatcher("adherentsDashboard.jsp");
+       req.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

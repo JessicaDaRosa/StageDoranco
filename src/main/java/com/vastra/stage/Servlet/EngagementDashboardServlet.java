@@ -4,10 +4,11 @@
  */
 package com.vastra.stage.Servlet;
 
-import com.vastra.stage.DAO.AdherentService;
-import com.vastra.stage.Modele.Adherent;
+import com.vastra.stage.DAO.EngagementService;
+import com.vastra.stage.Modele.Engagement;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import java.util.List;
  *
  * @author jessi
  */
-public class AdherentDashboard extends HttpServlet {
+public class EngagementDashboardServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,13 +32,10 @@ public class AdherentDashboard extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AdherentService db = new AdherentService();
-        List<Adherent> listAdh = db.findAll(); 
-        request.setAttribute("listAdherents", listAdh);
-        for(Adherent a : listAdh){
-            System.out.println(a.getId());
-        }
-        RequestDispatcher req = request.getRequestDispatcher("adherentsDashboard.jsp");
+        EngagementService bd = new EngagementService();
+        List<Engagement> listEngagements = bd.findAll();
+        request.setAttribute("listEngagements", listEngagements);
+        RequestDispatcher req = request.getRequestDispatcher("engagemntsDashboard.jsp");
         req.forward(request, response);
     }
 

@@ -8,6 +8,7 @@ import com.vastra.stage.DAO.AdherentService;
 import com.vastra.stage.Modele.Adherent;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import java.util.List;
  *
  * @author jessi
  */
-public class AdherentDashboard extends HttpServlet {
+public class EditerAdherentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,14 +32,7 @@ public class AdherentDashboard extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AdherentService db = new AdherentService();
-        List<Adherent> listAdh = db.findAll(); 
-        request.setAttribute("listAdherents", listAdh);
-        for(Adherent a : listAdh){
-            System.out.println(a.getId());
-        }
-        RequestDispatcher req = request.getRequestDispatcher("adherentsDashboard.jsp");
-        req.forward(request, response);
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -53,7 +47,12 @@ public class AdherentDashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       int id = Integer.parseInt(request.getParameter("id"));
+       AdherentService bd = new AdherentService();
+       Adherent adh = bd.findById(id);
+       request.setAttribute("adherent", adh);
+       RequestDispatcher req = request.getRequestDispatcher("editerAdherent.jsp");
+       req.forward(request, response);
     }
 
     /**
@@ -67,7 +66,39 @@ public class AdherentDashboard extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Adherent adh = new Adherent();
+        adh.setId(Integer.parseInt(request.getParameter("id")));
+        adh.setCode(request.getParameter("code"));
+        String codeClient = request.getParameter("CodeClientCER");
+        if (codeClient != null) {
+            adh.setCodeClient(Integer.parseInt(codeClient));
+        }
+        adh.setTitre(request.getParameter("titre"));
+        adh.setNom(request.getParameter("nom"));
+        adh.setPrenom(request.getParameter("prenom"));
+        adh.setAdresse1(request.getParameter("adresse1"));
+        adh.setAdresse2(request.getParameter("adresse2"));
+        String codePostal = request.getParameter("CodePostal");
+        if (codeClient != null) {
+            adh.setCodeClient(Integer.parseInt(codePostal));
+        }
+        adh.setCommune(request.getParameter("commune"));
+        adh.setPortable(request.getParameter("portable"));
+        adh.setFixe(request.getParameter("fixe"));
+        adh.setMail(request.getParameter("mail"));
+        adh.setNomEntreprise(request.getParameter("entreprise"));
+
+        AdherentService bd = new AdherentService();
+        boolean res = bd.update(adh);
+        if(res){
+            String message = "Les modiffications ont eté effectuées.";
+            request.setAttribute("message",message);
+        }
+        
+        List<Adherent> list = bd.findAll();
+        request.setAttribute("listAdherents", list);
+       RequestDispatcher req = request.getRequestDispatcher("adherentsDashboard.jsp");
+       req.forward(request, response);
     }
 
     /**

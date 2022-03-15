@@ -1,6 +1,6 @@
 <%-- 
-    Document   : materielDashboard
-    Created on : 11 mars 2022, 12:22:44
+    Document   : engagemntsDashboard
+    Created on : 15 mars 2022, 17:32:29
     Author     : jessi
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Engagements Dashboard</title>
         <style>
             .flex{
                 display: flex;
@@ -50,7 +50,7 @@
             }
             table{
                 margin-top: 1%;
-                width: 98%;
+                
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -88,9 +88,9 @@
         </style>
     </head>
     <body>
-        <header class="flex flex-row">
-            <h2>Matériel</h2>
-            <a href="createMateriel.jsp" class="m-left">Nouveau Materiel</a>
+         <header class="flex flex-row">
+            <h2>Engagements</h2>
+            <a href="${pageContext.request.contextPath}/Ajouter-Engagement" class="m-left">Nouveau Engagement</a>
             <a href="index.jsp" class="m-left">Retourner</a>
         </header>
         <section class="flex flex-column">
@@ -98,60 +98,26 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Matériel</th>
-                        <th>Martque</th>
-                        <th>Modèle</th>
-                        <th>Code</th>
-                        <th>Date d'achat</th>
-                        <th>Prix d'achat</th>
-                        <th>Durée d'ammortis</th>
-                        <th>K. Social</th>
-                        <th>Nombre d'adhérents</th>
-                        <th>Engagements</th>
-                        <th>Unité de facturation</th>
+                        <th>Code Matériel</th>
+                        <th>Description</th>
+                        <th>Code Adhérent</th>
+                        <th>PF</th>
+                        <th>volume</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${listMatos}" var="matos">
+                    <c:forEach items="${listEngagements}" var="eng">
                         <tr>
-                            <td>${matos.getMateriel()}</td>    
-                            <c:choose>
-                                <c:when test="${matos.getMarque() == '0'}">
-                                    <td>-</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td>${matos.getMarque()}</td>
-                                </c:otherwise>
-                            </c:choose>
-                            <c:choose>
-                                <c:when test="${matos.getModel() == '0'}">
-                                    <td>-</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td>${matos.getModel()}</td>
-                                </c:otherwise>
-                            </c:choose>
-                            <c:choose>
-                                <c:when test="${matos.getCode() == '0'}">
-                                    <td>-</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td>${matos.getCode()}</td>
-                                </c:otherwise>
-                            </c:choose>
-
-                            <td>${matos.getDateAchat()}</td>
-                            <td>${matos.getPrixAchat()}</td>
-                            <td>${matos.getDureeAmortis()}</td>
-                            <td>${matos.getkSocial()}</td>
-                            <td>${matos.getNbAdherents()}</td>
-                            <td>${matos.getEngagements()}</td>
-                            <td>${matos.getUniteFacturation()}</td>
+                            <td>${eng.getIdMateriel()}</td>    
+                            <td>${eng.getDescriptionMateriel()}</td>
+                            <td>${eng.getCodeAdherent()}</td>
+                            <td>${eng.getPf()}</td>
+                            <td>${eng.getVolume()}</td>
                             <td>
-                                <a class="actions" href="${pageContext.request.contextPath}/Editer-Materiel?code=${matos.getCode()}">Modifier</a><!-- Edit -->
+                                <a class="actions" href="${pageContext.request.contextPath}/Editer-Engagement?id=${eng.getId()}">Modifier</a><!-- Edit -->
                             </td>
                             <td>
-                                <a class="actions" href="${pageContext.request.contextPath}/Delete-Materiel?code=${matos.getCode()}">Supprimer</a><!-- Delete -->
+                                <a class="actions" href="${pageContext.request.contextPath}/Delete-Engagement?id=${eng.getId()}">Supprimer</a><!-- Delete -->
                             </td>
                         </tr>
                     </c:forEach>

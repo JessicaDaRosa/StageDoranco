@@ -8,7 +8,6 @@ import com.vastra.stage.DAO.MaterielService;
 import com.vastra.stage.Modele.Materiel;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

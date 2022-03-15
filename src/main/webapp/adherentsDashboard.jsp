@@ -3,7 +3,7 @@
     Created on : 15 mars 2022, 11:10:56
     Author     : jessi
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,8 @@
             }
             body{
                 background-image: url('https://wallpaperaccess.com/full/803470.jpg');
-                background-repeat: repeat;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
                 color: black;
                 font-family: 'Open Sans', sans-serif;
             }
@@ -88,8 +89,8 @@
     </head>
     <body>
         <header class="flex flex-row">
-            <h2>Matériel</h2>
-            <a href="createMateriel.jsp" class="m-left">Nouveau Materiel</a>
+            <h2>Adherent</h2>
+            <a href="createAdherent.jsp" class="m-left">Nouveau Adhérent</a>
             <a href="index.jsp" class="m-left">Retourner</a>
         </header>
         <section class="flex flex-column">
@@ -113,63 +114,84 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${lisAdherents}" var="adh">
+                    <c:forEach items="${listAdherents}" var="adherent">
                         <tr>
-                            <td>${adh.getCode()}</td>    
+                            <td>${adherent.getCode()}</td> 
+                            <td>${adherent.getCodeClient()}</td>
+                            <td>${adherent.getTitre()}</td>
+                            <td>${adherent.getNom()}</td>
+
                             <c:choose>
-                                <c:when test="${adh.getCodeClient() == '0'}">
+                                <c:when test="${adherent.getPrenom() == '0'}">
                                     <td>-</td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td>${adh.getCodeClient()}</td>
+                                    <td>${adherent.getPrenom()}</td>
                                 </c:otherwise>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${adh.getTitre() == '0'}">
+                                <c:when test="${adherent.getAdresse1() == '0'}">
                                     <td>-</td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td>${adh.getTitre()}</td>
+                                    <td>${adherent.getAdresse1()}</td>
+                                </c:otherwise>
+                            </c:choose> 
+                            <c:choose>
+                                <c:when test="${adherent.getAdresse2() == '0'}">
+                                    <td>-</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td>${adherent.getAdresse2()}</td>
+                                </c:otherwise>
+                            </c:choose>  
+                            <c:choose>
+                                <c:when test="${adherent.getCodePostal() == '0'}">
+                                    <td>-</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td>${adherent.getCodePostal()}</td>
+                                </c:otherwise>
+                            </c:choose> 
+                            <c:choose>
+                                <c:when test="${adherent.getCommune() == '0'}">
+                                    <td>-</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td>${adherent.getCommune()}</td>
                                 </c:otherwise>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${adh.getNom() == '0'}">
+                                <c:when test="${adherent.getPortable() == '0'}">
                                     <td>-</td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td>${adh.getNom()}</td>
+                                    <td>${adherent.getPortable()}</td>
                                 </c:otherwise>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${adh.getPrenom() == '0'}">
+                                <c:when test="${adherent.getFixe() == '0'}">
                                     <td>-</td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td>${adh.getPrenom()}</td>
+                                    <td>${adherent.getFixe()}</td>
                                 </c:otherwise>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${adh.getAdresse1() == '0'}">
+                                <c:when test="${adherent.getMail() == '0'}">
                                     <td>-</td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td>${adh.getAdresse1()}</td>
+                                    <td>${adherent.getMail()}</td>
                                 </c:otherwise>
                             </c:choose>
-                            <c:choose>
-                                <c:when test="${adh.getAdresse2() == '0'}">
-                                    <td>-</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td>${adh.getAdresse2()}</td>
-                                </c:otherwise>
-                            </c:choose>
-                            
+
+                            <td>${adherent.getNomEntreprise()}</td>
                             <td>
-                                <a class="actions" href="${pageContext.request.contextPath}/Editer-Materiel?code=${matos.getCode()}">Modifier</a><!-- Edit -->
-                            </td>
+                                <a class="actions" href="${pageContext.request.contextPath}/Editer-Adherent?id=${adherent.getId()}">Modifier</a><!-- Edit -->
+                            </td> 
                             <td>
-                                <a class="actions" href="${pageContext.request.contextPath}/Delete-Materiel?code=${matos.getCode()}">Supprimer</a><!-- Delete -->
+                                <a class="actions" href="${pageContext.request.contextPath}/Delete-Adherent?id=${adherent.getId()}">Supprimer</a><!-- Delete -->
                             </td>
                         </tr>
                     </c:forEach>

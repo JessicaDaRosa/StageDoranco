@@ -1,15 +1,15 @@
 <%-- 
-    Document   : createAdherent
-    Created on : 4 mars 2022, 14:44:26
+    Document   : editerAdherent
+    Created on : 15 mars 2022, 13:50:58
     Author     : jessi
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Editer Adherent</title>
         <style>
             html,
             body * {
@@ -28,7 +28,7 @@
                 padding: 1%;
                 margin-right: auto;
                 margin-left: auto;
-                margin-top: 8%;
+                margin-top: 5%;
                 background-color: #aca69f6b;
             }
             .formBox{
@@ -47,6 +47,7 @@
                 display: table-cell;
                 width: 100%;
                 margin: 1%;
+                
             }
             button{
                 display: table-caption;
@@ -104,76 +105,76 @@
         </style>
     </head>
     <body>
-
         <div class="outterBox">
 
-            <h1> Nouveau Adhérent </h1>
+            <h1> Editer Adhérent </h1>
 
             <br/><!-- comment -->
             <center>
                 <c:if test="${message != null}">${message}<br/><br/></c:if>
-                <form action="${pageContext.request.contextPath}/Ajouter-Adherent">
+                <form action="${pageContext.request.contextPath}/Editer-Adherent" method="post">
+                    <input type="hidden" name="id" value="${adherent.getId()}"/>
                     <div class="formBox">
-                        <label for="code">Code</label>
-                        <input type="text" placeholder="code" name="code"/>
+                        <label for="codeDisplay">Code</label>
+                        <input type="text" placeholder="code" name="codeDisplay" value="${adherent.getCode()}" disabled="true" />
+                        <input type="hidden" name="code" value="${adherent.getCode()}"/>
                     </div>
                     <div  class="formBox">
                         <label for="codeClietCER">Code Client CER</label>
-                        <input type="text" placeholder="Code client CER" name="codeClientCER"/><br/>         
+                        <input type="text" placeholder="Code client CER" name="codeClientCER" value="${adherent.getCodeClient()}"/><br/>         
                     </div>
                     <div  class="formBox">
                         <label for="titre">Titre</label>
-                        <input type="text" placeholder="Titre" name="titre"/><br/>
+                        <input type="text" placeholder="Titre" name="titre" value="${adherent.getTitre()}"/><br/>
                     </div>
                     <div class="formBox">
                         <label for="nom">Nom</label>
-                        <input type="text" placeholder="Nom" name="nom"/><br/>
+                        <input type="text" placeholder="Nom" name="nom"value="${adherent.getNom()}"/><br/>
                     </div>
                     <div  class="formBox">
                         <label for="prenom">Prenom</label>
-                        <input type="text" placeholder="Prenom" name="prenom"/><br/>
+                        <input type="text" placeholder="Prenom" name="prenom"value="${adherent.getPrenom()}"/><br/>
                     </div>
                     <div  class="formBox">
                         <label for="adresse1">Adresse 1</label>
-                        <input type="text" placeholder="Adresse 1" name="adresse1"/><br/>
+                        <input type="text" placeholder="Adresse 1" name="adresse1" value="${adherent.getAdresse1()}"/><br/>
                     </div>
                     <div class="formBox">
                         <label for="adresse2">Adresse 2</label>
-                        <input type="text" placeholder="Adresse 2" name="adresse2"/><br/>
+                        <input type="text" placeholder="Adresse 2" name="adresse2" value="${adherent.getAdresse2()}"/><br/>
                     </div>
                     <div  class="formBox">
                         <label for="codePostal">Code Postal</label>
-                        <input type="number" placeholder="Code Postal" name="codePostal"/><br/>
+                        <input type="number" placeholder="Code Postal" name="codePostal" value="${adherent.getCodePostal()}"/><br/>
                     </div>
                     <div  class="formBox">
                         <label for="commune">Commune</label>
-                        <input type="text" placeholder="Commune" name="commune"/><br/>
+                        <input type="text" placeholder="Commune" name="commune" value="${adherent.getCommune()}"/><br/>
                     </div>
                     <div class="formBox">
                         <label for="code">Portable</label>
-                        <input type="text" placeholder="Numero portable" name="portable"/><br/>
+                        <input type="text" placeholder="Numero portable" name="portable" value="${adherent.getPortable()}"/><br/>
                     </div>
                     <div  class="formBox">
                         <label for="fixe">Fixe</label>
-                        <input type="text" placeholder="Numero fixe" name="fixe"/><br/>
+                        <input type="text" placeholder="Numero fixe" name="fixe" value="${adherent.getFixe()}"/><br/>
                     </div>
                     <div  class="formBox">
                         <label for="mail">E-mail</label>
-                        <input type="text" placeholder="E-mail" name="mail"/><br/>
+                        <input type="text" placeholder="E-mail" name="mail" value="${adherent.getMail()}"/><br/>
                     </div>
                     <div  class="formBox">
                         <label for="entreprise">Nom Entite</label>
-                        <input type="text" placeholder="Nom de l'entite/ferme/societée/entreprise" name="entrepsise"/><br/>
+                        <input type="text" placeholder="Nom de l'entite/ferme/societée/entreprise" name="entrepsise" value="${adherent.getNomEntreprise()}"/><br/>
                     </div>
                     <center>
                         <br/><!-- comment -->
-                        <button   type="submit">Ajouter</button>
+                        <button   type="submit">Modifier</button>
                     </center>
                 </form>
             </center>
                      <br/><br/>
             <a href="${pageContext.request.contextPath}/Adherents">Retourner</a>
         </div>
-
     </body>
 </html>
