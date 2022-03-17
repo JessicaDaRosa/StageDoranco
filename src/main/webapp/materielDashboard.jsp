@@ -99,7 +99,7 @@
                 <thead>
                     <tr>
                         <th>Matériel</th>
-                        <th>Martque</th>
+                        <th>Marque</th>
                         <th>Modèle</th>
                         <th>Code</th>
                         <th>Date d'achat</th>

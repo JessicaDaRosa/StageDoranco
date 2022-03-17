@@ -1,17 +1,16 @@
 <%-- 
-    Document   : createEngagement
-    Created on : 5 mars 2022, 15:34:45
+    Document   : editerEngagement
+    Created on : 16 mars 2022, 21:14:41
     Author     : jessi
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-         <style>
+        <title>Editer Engagement</title>
+        <style>
             html,
             body * {
                 box-sizing: border-box;
@@ -104,52 +103,46 @@
         </style>
     </head>
     <body>
+           
         <div class="outterBox">
 
-            <h1> Nouveau Engagement </h1>
+            <h1> Editer Engagement </h1>
 
             <br/><!-- comment -->
             <center>
                 <c:if test="${message != null}">${message}<br/><br/></c:if>
-                <form action="${pageContext.request.contextPath}/Ajouter-Engagment" method="post">
+                <form action="${pageContext.request.contextPath}/Editer-Engagement" method="post">
+                    <input type="hidden" name="id" value="${engagement.getId()}"/>
                     <div class="formBox">                                               
                         <label for="codeMatos">Code du Materiel</label>
                         <select name='codeMatos'>
-                            <optiongroup label="Matériel">                            
-                            <c:forEach items="${listMateriel}" var="mat" >
-                                <option value="${mat.getCode()}">${mat.getCode()} - ${mat.getMateriel()}</option>
-                            </c:forEach>
-                            </optiongroup>
+                            <option value="${engagement.getIdMateriel()}">${engagement.getIdMateriel()}</option>
                         </select>
                     </div>
                     <div  class="formBox">
                         <label for="codeAdh">Code de l'Adhérenmt</label>
-                        
                         <select  name="codeAdh">
-                            <optgroup label="Adhérent">
-                            <c:forEach items="${listAdherents}" var="adherent">
-                                <option value="${adherent.getCode()}">${adherent.getCode()} - ${adherent.getNomEntreprise()}</option>
-                            </c:forEach>
-                            </optgroup>
+                            <option value="${engagement.getCodeAdherent()}">${engagement.getCodeAdherent()}</option>
                         </select>
 
                     </div>
                     <div  class="formBox">
                         <label for="pf">PF</label>
-                        <input type="number" placeholder="PF" name="pf"/><br/>
+                        <input type="number" placeholder="PF" name="pf" value="${engagement.getPf()}"/><br/>
                     </div>
                     <div class="formBox">
                         <label for="volume">Volume</label>
-                        <input type="text" name="volume" placeholder="Volume"/><br/>
+                        <input type="text" name="volume" placeholder="Volume" value="${engagement.getVolume()}"/><br/>
                     </div>
                     <center>
                         <br/><!-- comment -->
-                        <button   type="submit">Ajouter</button>
+                        <button   type="submit">Modifier</button>
                     </center>
                 </form>
             </center>
             <br/><br/>
             <a href="${pageContext.request.contextPath}/Engagements">Retourner</a>
         </div>
+
     </body>
 </html>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : engagemntsDashboard
-    Created on : 15 mars 2022, 17:32:29
+    Document   : actMatAdhDashboard
+    Created on : 17 mars 2022, 13:36:57
     Author     : jessi
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Engagements Dashboard</title>
+        <title>Activite Materiel Engagement Dashboard</title>
         <style>
             .flex{
                 display: flex;
@@ -83,14 +83,12 @@
                 background-color: #0f211a;
                 color: rgb(173,171,118);
             }
-
-
         </style>
     </head>
     <body>
-         <header class="flex flex-row">
-            <h2>Engagements</h2>
-            <a href="${pageContext.request.contextPath}/Ajouter-Engagment" class="m-left">Nouveau Engagement</a>
+       <header class="flex flex-row">
+            <h2>Activité par Engagement par Adhérent</h2>
+            <a href="${pageContext.request.contextPath}/Ajouter-Activite" class="m-left">Nouvelle Activité</a>
             <a href="${pageContext.request.contextPath}/" class="m-left">Retourner</a>
         </header>
         <section class="flex flex-column">
@@ -100,24 +98,28 @@
                     <tr>
                         <th>Code Matériel</th>
                         <th>Description</th>
+                        <th>Code Facturation</th>
                         <th>Code Adhérent</th>
+                        <th>Valeur fixe</th>
                         <th>PF</th>
-                        <th>volume</th>
+                        <th>Unité</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${listEngagements}" var="eng">
+                    <c:forEach items="${list}" var="aem">
                         <tr>
-                            <td>${eng.getIdMateriel()}</td>    
-                            <td>${eng.getDescriptionMateriel()}</td>
-                            <td>${eng.getCodeAdherent()}</td>
-                            <td>${eng.getPf()}</td>
-                            <td>${eng.getVolume()}</td>
+                            <td>${aem.getCodeMatos()}</td>    
+                            <td>${aem.getDescriptionMateriel()}</td>
+                            <td>${aem.getCodeFacturation()}</td>
+                            <td>${aem.getCodeAdherent()}</td>
+                            <td>${aem.getValeurFixe()}
+                            <td>${aem.getPf()}</td>
+                            <td>${aem.getUnite()}</td>
                             <td>
-                                <a class="actions" href="${pageContext.request.contextPath}/Editer-Engagement?id=${eng.getId()}">Modifier</a><!-- Edit -->
+                                <a class="actions" href="${pageContext.request.contextPath}/Editer-Activite?id=${aem.getId()}">Modifier</a><!-- Edit -->
                             </td>
                             <td>
-                                <a class="actions" href="${pageContext.request.contextPath}/Delete-Engagement?id=${eng.getId()}">Supprimer</a><!-- Delete -->
+                                <a class="actions" href="${pageContext.request.contextPath}/Delete-Activite?id=${aem.getId()}">Supprimer</a><!-- Delete -->
                             </td>
                         </tr>
                     </c:forEach>

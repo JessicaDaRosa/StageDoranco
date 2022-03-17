@@ -130,5 +130,30 @@ public class ActMatAdhService implements IDao<ActMatAdh> {
         }
         return null;
     }
+    public List<ActMatAdh> findAllDescription(){
+        String sql="SELECT `id`, `Code_materiel`,`Description`, `Code_facturation`, `Valeur_fixe`, `Code_adherent`, `pf`, `unite` FROM `actmateng` a, `matériel` m WHERE a.Code_materiel=m.Code";
+        PreparedStatement smt = bd.getPreparedStatement(sql);
+        List<ActMatAdh> act_list = new ArrayList<>();
+        try {
+            ResultSet res = smt.executeQuery();
+            while(res.next()){
+                ActMatAdh act = new ActMatAdh();
+                act.setId(res.getInt(1));
+                act.setCodeMatos(res.getString(2));
+                act.setDescriptionMateriel(res.getString(3));
+                act.setCodeFacturation(res.getString(4));
+                act.setValeurFixe(res.getFloat(5));
+                act.setCodeAdherent(res.getString(6));
+                act.setPf(res.getFloat(7));
+                act.setUnite(res.getFloat(8));
+                act_list.add(act);
+            }
+            return act_list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ActMatAdhService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
+    }
 
 }

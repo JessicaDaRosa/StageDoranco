@@ -122,7 +122,7 @@ public class EngagementService implements IDao<Engagement> {
     
     @Override
     public List<Engagement> findAll() {
-        String sql = "SELECT `id`, `Code_matériel`, `Code_adhérent`, `pf`, `volume`, `Description` FROM `engagements` e, `matériel` m WHERE e.Code_matériel = m.Code;";
+        String sql = "SELECT `id`, `Code_matériel`, `Code_adhérent`, `pf`, `volume`, `Description` FROM `engagements` e, `matériel` m WHERE e.Code_matériel = m.Code";
         ArrayList<Engagement> eng_list = new ArrayList<>();
 
         try {

@@ -1,17 +1,16 @@
 <%-- 
-    Document   : createEngagement
-    Created on : 5 mars 2022, 15:34:45
+    Document   : createActMatAdh
+    Created on : 17 mars 2022, 20:18:23
     Author     : jessi
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-         <style>
+        <title>Ajouter Activite par materiel par Adherent</title>
+        <style>
             html,
             body * {
                 box-sizing: border-box;
@@ -104,27 +103,35 @@
         </style>
     </head>
     <body>
-        <div class="outterBox">
+         <div class="outterBox">
 
-            <h1> Nouveau Engagement </h1>
+            <h1> Nouvelle Activité </h1>
 
             <br/><!-- comment -->
             <center>
                 <c:if test="${message != null}">${message}<br/><br/></c:if>
-                <form action="${pageContext.request.contextPath}/Ajouter-Engagment" method="post">
+                <form action="${pageContext.request.contextPath}/Ajouter-Activite" method="post">
                     <div class="formBox">                                               
                         <label for="codeMatos">Code du Materiel</label>
                         <select name='codeMatos'>
                             <optiongroup label="Matériel">                            
-                            <c:forEach items="${listMateriel}" var="mat" >
-                                <option value="${mat.getCode()}">${mat.getCode()} - ${mat.getMateriel()}</option>
-                            </c:forEach>
+                                <c:forEach items="${listMateriel}" var="mat" >
+                                    <option value="${mat.getCode()}">${mat.getCode()} - ${mat.getMateriel()}</option>
+                                </c:forEach>
                             </optiongroup>
                         </select>
                     </div>
                     <div  class="formBox">
+                        <label for="codeFacturation">Code Facturation</label>
+                        <input type="text" placeholder="Code Facturation" name="codeFacturation"/><br/>
+                    </div>
+                    <div  class="formBox">
+                        <label for="valeurFixe">Valeur Fixe</label>
+                        <input type="text" placeholder="Valeur Fixe" name="valeurFixe"/><br/>
+                    </div>
+                    <div  class="formBox">
                         <label for="codeAdh">Code de l'Adhérenmt</label>
-                        
+
                         <select  name="codeAdh">
                             <optgroup label="Adhérent">
                             <c:forEach items="${listAdherents}" var="adherent">
@@ -139,8 +146,8 @@
                         <input type="number" placeholder="PF" name="pf"/><br/>
                     </div>
                     <div class="formBox">
-                        <label for="volume">Volume</label>
-                        <input type="text" name="volume" placeholder="Volume"/><br/>
+                        <label for="unite">Unité</label>
+                        <input type="text" name="unite" placeholder="Unité"/><br/>
                     </div>
                     <center>
                         <br/><!-- comment -->
@@ -149,7 +156,7 @@
                 </form>
             </center>
             <br/><br/>
-            <a href="${pageContext.request.contextPath}/Engagements">Retourner</a>
+            <a href="${pageContext.request.contextPath}/Activite-Materiel-Adherent">Retourner</a>
         </div>
     </body>
 </html>

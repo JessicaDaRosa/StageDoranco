@@ -1,16 +1,15 @@
 <%-- 
-    Document   : createEngagement
-    Created on : 5 mars 2022, 15:34:45
+    Document   : editerActMatAdh
+    Created on : 17 mars 2022, 21:53:41
     Author     : jessi
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Editer Activité</title>
          <style>
             html,
             body * {
@@ -106,50 +105,53 @@
     <body>
         <div class="outterBox">
 
-            <h1> Nouveau Engagement </h1>
+            <h1> Editer Activité </h1>
 
             <br/><!-- comment -->
             <center>
                 <c:if test="${message != null}">${message}<br/><br/></c:if>
-                <form action="${pageContext.request.contextPath}/Ajouter-Engagment" method="post">
+                <form action="${pageContext.request.contextPath}/Editer-Activite" method="post">
+                    <input type="hidden" name="id" value="${activite.getId()}"/>
                     <div class="formBox">                                               
                         <label for="codeMatos">Code du Materiel</label>
                         <select name='codeMatos'>
                             <optiongroup label="Matériel">                            
-                            <c:forEach items="${listMateriel}" var="mat" >
-                                <option value="${mat.getCode()}">${mat.getCode()} - ${mat.getMateriel()}</option>
-                            </c:forEach>
+                                <option value="${activite.getCodeMatos()}">${activite.getCodeMatos()}</option>
                             </optiongroup>
                         </select>
                     </div>
                     <div  class="formBox">
+                        <label for="codeFacturation">Code Facturation</label>
+                        <input type="text" placeholder="Code Facturation" name="codeFacturation" value="${activite.getCodeFacturation()}"/><br/>
+                    </div>
+                    <div  class="formBox">
+                        <label for="valeurFixe">Valeur Fixe</label>
+                        <input type="text" placeholder="Valeur Fixe" name="valeurFixe" value="${activite.getValeurFixe()}"/><br/>
+                    </div>
+                    <div  class="formBox">
                         <label for="codeAdh">Code de l'Adhérenmt</label>
-                        
                         <select  name="codeAdh">
                             <optgroup label="Adhérent">
-                            <c:forEach items="${listAdherents}" var="adherent">
-                                <option value="${adherent.getCode()}">${adherent.getCode()} - ${adherent.getNomEntreprise()}</option>
-                            </c:forEach>
+                                <option value="${activite.getCodeAdherent()}">${activite.getCodeAdherent()}</option>
                             </optgroup>
                         </select>
-
                     </div>
                     <div  class="formBox">
                         <label for="pf">PF</label>
-                        <input type="number" placeholder="PF" name="pf"/><br/>
+                        <input type="number" placeholder="PF" name="pf" value="${activite.getPf()}"/><br/>
                     </div>
                     <div class="formBox">
-                        <label for="volume">Volume</label>
-                        <input type="text" name="volume" placeholder="Volume"/><br/>
+                        <label for="unite">Unité</label>
+                        <input type="text" name="unite" placeholder="Unité" value="${activite.getUnite()}"/><br/>
                     </div>
                     <center>
                         <br/><!-- comment -->
-                        <button   type="submit">Ajouter</button>
+                        <button   type="submit">Modiffier</button>
                     </center>
                 </form>
             </center>
             <br/><br/>
-            <a href="${pageContext.request.contextPath}/Engagements">Retourner</a>
+            <a href="${pageContext.request.contextPath}/Activite-Materiel-Adherent">Retourner</a>
         </div>
     </body>
 </html>

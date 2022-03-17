@@ -36,6 +36,38 @@
         <servlet-name>EngagementDashboardServlet</servlet-name>
         <servlet-class>com.vastra.stage.Servlet.EngagementDashboardServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>createEngagementServlet</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.createEngagementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditerEngagementServlet</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.EditerEngagementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteEngagementServlet</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.DeleteEngagementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActMatAdhDashboard</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.ActMatAdhDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditerActMatEngServlet</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.EditerActMatEngServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AjouterActMatAdh</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.AjouterActMatAdhServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editerActMatAdh</servlet-name>
+        <servlet-class>editerActMatAdh</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteActMatAdhServlet</servlet-name>
+        <servlet-class>com.vastra.stage.Servlet.DeleteActMatAdhServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MaterielDashboarsServlet</servlet-name>
         <url-pattern>/Materiel</url-pattern>
@@ -71,6 +103,38 @@
     <servlet-mapping>
         <servlet-name>EngagementDashboardServlet</servlet-name>
         <url-pattern>/Engagements</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createEngagementServlet</servlet-name>
+        <url-pattern>/Ajouter-Engagment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditerEngagementServlet</servlet-name>
+        <url-pattern>/Editer-Engagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteEngagementServlet</servlet-name>
+        <url-pattern>/Delete-Engagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActMatAdhDashboard</servlet-name>
+        <url-pattern>/Activite-Materiel-Adherent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditerActMatEngServlet</servlet-name>
+        <url-pattern>/Editer-Activite</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjouterActMatAdh</servlet-name>
+        <url-pattern>/Ajouter-Activite</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editerActMatAdh</servlet-name>
+        <url-pattern>/editerActMatAdh</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteActMatAdhServlet</servlet-name>
+        <url-pattern>/Delete-Activite</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

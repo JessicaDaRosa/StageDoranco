@@ -13,6 +13,7 @@ import java.util.Objects;
 public class ActMatAdh {
     private int id;
     private String codeMatos;
+    private String descriptionMateriel;
     private String codeFacturation;
     private float valeurFixe;
     private String codeAdherent;
@@ -92,7 +93,7 @@ public class ActMatAdh {
     public String toString() {
         return "ActMatAdh{" + "id=" + id + ", codeMatos=" + codeMatos + ", codeFacturation=" + codeFacturation + ", valeurFixe=" + valeurFixe + ", codeAdherent=" + codeAdherent + ", pf=" + pf + ", unite=" + unite + '}';
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -137,6 +138,14 @@ public class ActMatAdh {
             return false;
         }
         return Objects.equals(this.codeAdherent, other.codeAdherent);
+    }
+
+    public String getDescriptionMateriel() {
+        return descriptionMateriel;
+    }
+
+    public void setDescriptionMateriel(String descriptionMateriel) {
+        this.descriptionMateriel = descriptionMateriel;
     }
     
     
