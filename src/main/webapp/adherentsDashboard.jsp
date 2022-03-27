@@ -91,7 +91,7 @@
         <header class="flex flex-row">
             <h2>Adherent</h2>
             <a href="createAdherent.jsp" class="m-left">Nouveau Adhérent</a>
-            <a href="index.jsp" class="m-left">Retourner</a>
+            <a href="${pageContext.request.contextPath}/" class="m-left">Retourner</a>
         </header>
         <section class="flex flex-column">
             <center><c:if test="${message != null}">${message}</c:if></center>
